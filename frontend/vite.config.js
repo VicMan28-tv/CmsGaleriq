@@ -1,12 +1,12 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// Vite config para CMS frontend: puerto fijo y sin cambios automáticos
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
+  base: mode === 'development' ? '/' : '/CmsGaleriq/',
   server: {
     host: 'localhost',
     port: 5173,
     strictPort: true,
   },
-});
+}));
