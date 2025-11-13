@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirect</title>
+    <script>
+      (function() {
+        var base = '/CmsGaleriq/';
+        if (location.pathname.indexOf(base) !== 0) {
+          // If base isn't present, go to root
+          location.replace(base);
+          return;
+        }
+        // For GitHub Pages: redirect any deep link to SPA root
+        location.replace(base);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
