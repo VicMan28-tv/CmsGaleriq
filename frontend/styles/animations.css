@@ -1,0 +1,228 @@
+/* frontend/styles/animations.css */
+@layer utilities {
+  /* ====== Motion system (durations & easing) ====== */
+  :root {
+    --motion-fast: 160ms;
+    --motion-base: 280ms;
+    --motion-slow: 380ms;
+    --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  /* ====== Animación de entrada ====== */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .anim-in {
+    animation: fadeUp var(--motion-base) var(--ease-out-quint) both;
+  }
+  .anim-delay-1 {
+    animation-delay: 0.08s;
+  }
+  .anim-delay-2 {
+    animation-delay: 0.16s;
+  }
+  .shadow-glow {
+    box-shadow: 0 8px 24px rgba(112, 26, 117, 0.15);
+  }
+
+  /* ====== Menú lateral (animación y gradiente) ====== */
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  .slide-in-left {
+    animation: slideInLeft var(--motion-base) var(--ease-out-quint) both;
+  }
+
+  /* Versión más suave, con ligera desaceleración y sin brusquedad */
+  @keyframes slideInLeftSoft {
+    0% {
+      transform: translateX(-22%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  .slide-in-left-soft {
+    animation: slideInLeftSoft var(--motion-base) var(--ease-out-quint) both;
+  }
+
+  .sidebar-gradient {
+    background: linear-gradient(
+      to right,
+      rgba(139, 92, 246, 1) 0%,
+      rgba(139, 92, 246, 0.95) 40%,
+      rgba(139, 92, 246, 0.9) 70%,
+      rgba(139, 92, 246, 0.8) 100%
+    );
+  }
+
+  /* ====== Modal & Overlay ====== */
+  @keyframes overlayFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .anim-overlay {
+    animation: overlayFade var(--motion-base) var(--ease-out-quint) both;
+  }
+
+  @keyframes modalPop {
+    0% { opacity: 0; transform: translateY(10px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .anim-modal {
+    animation: modalPop var(--motion-base) var(--ease-out-quint) both;
+  }
+
+  /* Transición base para elementos interactivos */
+  .transition-base {
+    transition: transform var(--motion-fast) var(--ease-out-quint),
+      box-shadow var(--motion-fast) var(--ease-out-quint),
+      filter var(--motion-fast) var(--ease-out-quint),
+      background-color var(--motion-fast) var(--ease-out-quint),
+      opacity var(--motion-fast) var(--ease-out-quint),
+      border-color var(--motion-fast) var(--ease-out-quint);
+  }
+
+  /**
+   * ====== HOVER UNIVERSAL (Botones y "pseudo-botones") ======
+   * Cubre: button, elementos con role="button", y anchors con clases comunes
+   * (btn, button, tab-btn, chip-btn) o style de botón.
+   */
+  button,
+  [role="button"],
+  .action-btn,
+  .pill-btn,
+  a.button,
+  a.btn,
+  .btn,
+  .tab-btn,
+  .chip-btn,
+  .hover-raise {
+    transition: transform var(--motion-fast) var(--ease-out-quint), box-shadow var(--motion-fast) var(--ease-out-quint), filter var(--motion-fast) var(--ease-out-quint),
+      background-color var(--motion-fast) var(--ease-out-quint), opacity var(--motion-fast) var(--ease-out-quint), border-color var(--motion-fast) var(--ease-out-quint);
+    -webkit-tap-highlight-color: transparent;
+    will-change: transform, box-shadow, filter;
+  }
+
+  button:hover,
+  [role="button"]:hover,
+  .action-btn:hover,
+  .pill-btn:hover,
+  a.button:hover,
+  a.btn:hover,
+  .btn:hover,
+  .tab-btn:hover,
+  .chip-btn:hover,
+  .hover-raise:hover {
+    transform: translateY(-2px) scale(1.015);
+    box-shadow: 0 10px 24px rgba(112, 26, 117, 0.18);
+    filter: saturate(1.02);
+  }
+
+  button:active,
+  [role="button"]:active,
+  .action-btn:active,
+  .pill-btn:active,
+  a.button:active,
+  a.btn:active,
+  .btn:active,
+  .tab-btn:active,
+  .chip-btn:active,
+  .hover-raise:active {
+    transform: translateY(0) scale(0.985);
+    box-shadow: 0 6px 14px rgba(112, 26, 117, 0.14);
+  }
+
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  .action-btn:focus-visible,
+  .pill-btn:focus-visible,
+  a.button:focus-visible,
+  a.btn:focus-visible,
+  .btn:focus-visible,
+  .tab-btn:focus-visible,
+  .chip-btn:focus-visible,
+  .hover-raise:focus-visible {
+    outline: 2px solid #a78bfa;
+    outline-offset: 2px;
+  }
+
+  /* ====== HOVER UNIVERSAL: IMÁGENES ====== */
+  img {
+    transition: transform var(--motion-base) var(--ease-out-quint), filter var(--motion-base) var(--ease-out-quint), box-shadow var(--motion-base) var(--ease-out-quint);
+    will-change: transform, filter;
+  }
+  img:hover {
+    transform: translateY(-3px) scale(1.03);
+    filter: saturate(1.06) contrast(1.02);
+    box-shadow: 0 14px 26px rgba(112, 26, 117, 0.14);
+  }
+  img:active {
+    transform: scale(0.99);
+  }
+
+  /* ====== Botón de acción pequeño (FOTOS) ====== */
+  .action-btn {
+    border-radius: 9999px;
+    padding: 0.5rem;
+    background: rgba(196, 181, 253, 0.7);
+    transition: transform 0.18s ease, box-shadow 0.18s ease,
+      background-color 0.18s ease;
+  }
+  .action-btn:hover {
+    background: rgba(196, 181, 253, 0.95);
+  }
+
+  /* ====== Donut chart ====== */
+  .donut {
+    --size: 180px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: conic-gradient(#8b5cf6 calc(var(--pct) * 1%), #e9d5ff 0);
+    -webkit-mask: radial-gradient(
+      circle 70px at center,
+      transparent 55px,
+      #000 56px
+    );
+    mask: radial-gradient(circle 70px at center, transparent 55px, #000 56px);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.25) inset,
+      0 10px 30px rgba(139, 92, 246, 0.15);
+    color: #4c1d95;
+  }
+
+  /* ====== Oculta scrollbar en contenedores horizontales (móvil) ====== */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* ====== Accesibilidad: reduce motion ====== */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}

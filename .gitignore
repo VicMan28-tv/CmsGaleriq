@@ -1,0 +1,30 @@
+# Node
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.vite/
+
+# Python
+__pycache__/
+*.pyc
+backend/.venv/
+.venv/
+
+# Environments & secrets
+.env
+backend/.env
+frontend/.env.local
+frontend/.env
+.env.local
+
+# Databases & uploads
+app.db
+uploads/
+galeriq-web/
+
+# IDE/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
